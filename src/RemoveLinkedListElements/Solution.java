@@ -2,20 +2,13 @@ package RemoveLinkedListElements;
 
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode prev = null, cur = head;
-        while(cur!= null){
-            ListNode nxt = cur.next;
-            if(cur.val == val){
-                if(prev != null)
-                    prev.next = nxt;
-                else
-                    head = head.next;
-                cur.next = null;
-            }else{
-                prev = cur;
-            }
-            cur = nxt;
+        ListNode ans = new ListNode(0,head), dummy;
+        dummy = ans;
+        while(dummy!= null){
+            while(dummy.next !=null && dummy.next.val ==val)
+                dummy.next = dummy.next.next;
+            dummy = dummy.next;
         }
-        return head;
+        return ans.next;
     }
 }
