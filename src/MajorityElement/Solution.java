@@ -2,13 +2,13 @@ package MajorityElement;
 import java.util.*;
 
 public class Solution {
+    // boyer-moore's algorithm
     public int majorityElement(int[] nums) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for(Integer i : nums){
-            map.put(i,map.getOrDefault(i,0)+1);
-            if(map.get(i) > nums.length/2)
-                return i;
+        int candidate =0, count =0;
+        for(int x :nums){
+            if(count ==0) candidate =x;
+            count += (x==candidate) ? 1 : -1;
         }
-        return 0;
+        return candidate;
     }
 }
